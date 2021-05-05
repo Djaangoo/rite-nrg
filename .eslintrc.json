@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": ["projects/**/*", "/api/**/*.js"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -12,7 +12,8 @@
         "prettier",
         "plugin:@angular-eslint/ng-cli-compat",
         "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:ngrx/recommended"
       ],
       "plugins": ["prettier"],
       "rules": {

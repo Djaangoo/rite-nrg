@@ -43,6 +43,12 @@
           <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
         </span>
       </div>
+      <button nz-button nzType="primary" (click)="increment()">Increment</button>
+      <div>Current Count: {{ count$ | async }}</div>
+
+      <button nz-button nzType="primary" (click)="decrement()">Decrement</button>
+
+      <button nz-button nzType="primary" (click)="reset()">Reset Counter</button>
     </nz-header>
     <nz-content>
       <div class="inner-content">

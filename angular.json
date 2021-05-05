@@ -132,6 +132,6 @@
   },
   "defaultProject": "rite-nrg",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "defaultCollection": "@ngrx/schematics"
   }
 }

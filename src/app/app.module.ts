@@ -6,14 +6,13 @@ import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, CoreModule, SharedModule, BrowserAnimationsModule],
+  imports: [BrowserAnimationsModule, BrowserModule, AppRoutingModule, CoreModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
