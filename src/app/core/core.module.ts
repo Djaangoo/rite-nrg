@@ -7,12 +7,15 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { environment } from 'src/environments/environment';
 import { IconsProviderModule } from './icons/icons-provider.module';
-import { counterReducer } from './store/counter.reducer';
+import { counterReducer } from './store/counter/counter.reducer';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { UsersService } from './services/users/users.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
   imports: [
+    HttpClientModule,
     CommonModule,
     StoreModule.forRoot({ count: counterReducer }),
     environment.production
@@ -26,7 +29,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzButtonModule,
   ],
   exports: [IconsProviderModule, NzLayoutModule, NzMenuModule, NzButtonModule],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, UsersService],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
