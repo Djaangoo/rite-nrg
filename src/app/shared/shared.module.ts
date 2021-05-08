@@ -3,10 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { UserAvatarComponent } from './components/user-avatar/user-avatar/user-avatar.component';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
-  exports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
+  declarations: [UserAvatarComponent],
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule, NzAvatarModule, NzGridModule, NzButtonModule],
+  exports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule,
+    UserAvatarComponent,
+    NzGridModule,
+    NzButtonModule,
+  ],
 })
 export class SharedModule {}

@@ -1,8 +1,11 @@
+import { ITeamsState } from '../store/teams/teams.reducer';
+import { IUsersState } from '../store/users/users.reducer';
+
 export interface ITeam {
   id: number;
   name: string;
   tasks: ITask[];
-  users: number[];
+  members: number[];
 }
 
 export interface ITask {
@@ -17,4 +20,12 @@ export interface IUser {
   firstName: string;
   lastName: string;
   avatar: string;
+}
+export interface IUsers {
+  [userId: string]: IUser;
+}
+
+export interface IRootStore {
+  teams: ITeamsState;
+  users: IUsersState;
 }

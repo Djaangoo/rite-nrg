@@ -1,0 +1,46 @@
+<nz-table
+  #teamsTable
+  nzTableLayout="fixed"
+  [nzLoading]="($status | async) === 2"
+  [nzData]="($teams | async) || []"
+  [nzTitle]="testHeader"
+>
+  <thead>
+    <tr>
+      <th *ngFor="let column of listOfColumns" [nzSortOrder]="column.sortOrder" [nzSortFn]="column.sortFn">
+        {{ column.name }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let team of teamsTable.data">
+      <td nzEllipsis>
+        <a [routerLink]="['/team', team.id]">
+          {{ team.name }}
+        </a>
+      </td>
+      <td nzEllipsis class="avatars__container">
+        <app-user-avatar
+          class="avatars__item"
+          *ngFor="let memberId of team.members.slice(0, 3)"
+          [id]="memberId"
+        ></app-user-avatar>
+        <app-user-avatar
+          class="avatars__item"
+          *ngIf="team.members.length > 3"
+          [text]="'+' + (team.members.length - 3)"
+        ></app-user-avatar>
+      </td>
+      <td>{{ getAllTasksStatus(team) }}</td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #testHeader>
+  <div nz-row nzJustify="space-between" nzAlign="middle">
+    <div nz-col>List of Teams</div>
+    <div nz-col>
+      <button nz-button nzType="primary">Add Team</button>
+    </div>
+  </div>
+</ng-template>

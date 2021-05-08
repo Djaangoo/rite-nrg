@@ -1,86 +1,86 @@
-[
-  {
+{
+  "1": {
     "id": 1,
     "email": "Jake18@gmail.com",
     "firstName": "Florian",
     "lastName": "Kunde",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hanna_smi/128.jpg"
+    "avatar": "https://i.pravatar.cc/150?img=1"
   },
-  {
+  "2": {
     "id": 2,
     "email": "Brooks.Schimmel@gmail.com",
     "firstName": "Boyd",
     "lastName": "Mitchell",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/lingeswaran/128.jpg"
+    "avatar": "https://i.pravatar.cc/150?img=2"
   },
-  {
+  "3": {
     "id": 3,
     "email": "Roma_Price47@gmail.com",
     "firstName": "Edwina",
     "lastName": "Sporer",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nutzumi/128.jpg"
+    "avatar": "https://i.pravatar.cc/150?img=3"
   },
-  {
+  "4": {
     "id": 4,
     "email": "Alexandrine_Kuhlman@yahoo.com",
     "firstName": "Andrew",
     "lastName": "Hartmann",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/m4rio/128.jpg"
+    "avatar": "https://i.pravatar.cc/150?img=4"
   },
-  {
+  "5": {
     "id": 5,
     "email": "Avis70@gmail.com",
     "firstName": "Una",
     "lastName": "Hamill",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jakemoore/128.jpg"
+    "avatar": "https://i.pravatar.cc/150?img=5"
   },
-  {
+  "6": {
     "id": 6,
     "email": "Laury.Ledner97@gmail.com",
     "firstName": "Enoch",
     "lastName": "Robel",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/eugeneeweb/128.jpg"
+    "avatar": "https://i.pravatar.cc/150?img=6"
   },
-  {
+  "7": {
     "id": 7,
     "email": "michael.lawson@reqres.in",
     "firstName": "Michael",
     "lastName": "Lawson",
     "avatar": "https://reqres.in/img/faces/7-image.jpg"
   },
-  {
+  "8": {
     "id": 8,
     "email": "lindsay.ferguson@reqres.in",
     "firstName": "Lindsay",
     "lastName": "Ferguson",
     "avatar": "https://reqres.in/img/faces/8-image.jpg"
   },
-  {
+  "9": {
     "id": 9,
     "email": "tobias.funke@reqres.in",
     "firstName": "Tobias",
     "lastName": "Funke",
     "avatar": "https://reqres.in/img/faces/9-image.jpg"
   },
-  {
+  "10": {
     "id": 10,
     "email": "byron.fields@reqres.in",
     "firstName": "Byron",
     "lastName": "Fields",
     "avatar": "https://reqres.in/img/faces/10-image.jpg"
   },
-  {
+  "11": {
     "id": 11,
     "email": "george.edwards@reqres.in",
     "firstName": "George",
     "lastName": "Edwards",
     "avatar": "https://reqres.in/img/faces/11-image.jpg"
   },
-  {
+  "12": {
     "id": 12,
     "email": "rachel.howell@reqres.in",
     "firstName": "Rachel",
     "lastName": "Howell",
     "avatar": "https://reqres.in/img/faces/12-image.jpg"
   }
-]
+}

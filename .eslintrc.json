@@ -10,10 +10,10 @@
       },
       "extends": [
         "prettier",
+        "plugin:ngrx/recommended",
         "plugin:@angular-eslint/ng-cli-compat",
         "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:ngrx/recommended"
+        "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "plugins": ["prettier"],
       "rules": {
@@ -33,7 +33,8 @@
             "prefix": "app",
             "style": "camelCase"
           }
-        ]
+        ],
+        "arrow-body-style": ["error", "always"]
       }
     },
     {
