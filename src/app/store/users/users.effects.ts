@@ -3,14 +3,14 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { UsersService } from 'src/app/core/services/users/users.service';
-import { ETeamsActions } from '../teams/teams.actions';
+import { EGlobActions } from 'src/app/model/enums';
 import { EUsersActions } from './users.actions';
 
 @Injectable()
 export class UsersEffects {
   loadUsers$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(EUsersActions.load, ETeamsActions.loadSuccess),
+      ofType(EGlobActions.loadData, EUsersActions.load),
       mergeMap(() => {
         return this.usersService.getAll().pipe(
           map((users) => {

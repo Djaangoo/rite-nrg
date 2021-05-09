@@ -24,7 +24,7 @@ Imagine an API that exposes methods that supports following User Stories:
 > I want to be able to increment the value of a stored counter\
 > So that I can get steps counted towards my team's score
 
-                                as Team Member -> Add Task -> Create Task
+                                as Team Member -> Check/Uncheck Task
     Teams list -> Team Page -> 
                                 as Normal User -> 🚫
 
@@ -66,7 +66,7 @@ Imagine an API that exposes methods that supports following User Stories:
 > As a User\
 > I want to be able to add/delete counters\
 > So that I can manage team member's counters
-
-                                as Team Member -> choose task -> Remove task -> confirm -> Task removed
-    Teams list -> Team Page -> 
+                                                                Remove task -> confirm -> Task removed
+                                as Team Member -> choose task -> 
+    Teams list -> Team Page ->                                  Add Task -> Fill in the Form 
                                 as Normal User -> 🚫

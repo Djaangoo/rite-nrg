@@ -8,8 +8,14 @@ const getStateTeams = createSelector(selectTeamsFeature, (state: ITeamsState) =>
   return state.data;
 });
 
+const getStateSingleTeam = createSelector(selectTeamsFeature, (state: ITeamsState, props: { id: number }) => {
+  return state.data.find((team) => {
+    return team.id === props.id;
+  });
+});
+
 const getStateStatus = createSelector(selectTeamsFeature, (state: ITeamsState) => {
   return state.status;
 });
 
-export { getStateTeams, getStateStatus };
+export { getStateTeams, getStateStatus, getStateSingleTeam };

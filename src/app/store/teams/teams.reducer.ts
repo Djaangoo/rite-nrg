@@ -1,7 +1,15 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EStatus } from 'src/app/model/enums';
-import { ITeam } from 'src/app/model/interfaces';
-import { loadTeams, loadTeamsFailure, loadTeamsSuccess } from './teams.actions';
+import { ITask, ITeam } from 'src/app/model/interfaces';
+import {
+  addTask,
+  loadTeams,
+  loadTeamsFailure,
+  loadTeamsSuccess,
+  markTaskCompleted,
+  removeSelectedTask,
+  unmarkTaskCompleted,
+} from './teams.actions';
 
 export const teamsFeatureKey = 'teams';
 
@@ -32,6 +40,94 @@ export const teamsReducer = createReducer(
     loadTeamsFailure,
     (state): ITeamsState => {
       return { ...state, status: EStatus.error };
+    },
+  ),
+  on(
+    markTaskCompleted,
+    (state, action): ITeamsState => {
+      const changedTeams = [...state.data].map((_team) => {
+        if (_team.id === action.team.id) {
+          return {
+            ..._team,
+            tasks: _team.tasks.map((_task) => {
+              if (_task.id === action.task.id) {
+                return { ..._task, completedBy: [..._task.completedBy, action.user.id] };
+              }
+              return _task;
+            }),
+          };
+        }
+        return _team;
+      });
+
+      return { ...state, data: changedTeams };
+    },
+  ),
+  on(
+    unmarkTaskCompleted,
+    (state, action): ITeamsState => {
+      const changedTeams = [...state.data].map((_team) => {
+        if (_team.id === action.team.id) {
+          return {
+            ..._team,
+            tasks: _team.tasks.map((_task) => {
+              if (_task.id === action.task.id) {
+                return {
+                  ..._task,
+                  completedBy: _task.completedBy.filter((_id) => {
+                    return _id !== action.user.id;
+                  }),
+                };
+              }
+              return _task;
+            }),
+          };
+        }
+        return _team;
+      });
+
+      return { ...state, data: changedTeams };
+    },
+  ),
+  on(
+    addTask,
+    (state, action): ITeamsState => {
+      const changedTeams = [...state.data].map((_team) => {
+        if (_team.id === action.teamID) {
+          const newTask: ITask = {
+            title: action.title,
+            description: action.description,
+            completedBy: [],
+            id: new Date().valueOf().toString(),
+          };
+
+          return {
+            ..._team,
+            tasks: [..._team.tasks, newTask],
+          };
+        }
+        return _team;
+      });
+
+      return { ...state, data: changedTeams };
+    },
+  ),
+  on(
+    removeSelectedTask,
+    (state, action): ITeamsState => {
+      const changedTeams = [...state.data].map((_team) => {
+        if (_team.id === action.team.id) {
+          return {
+            ..._team,
+            tasks: _team.tasks.filter((_task) => {
+              return _task.id !== action.task.id;
+            }),
+          };
+        }
+        return _team;
+      });
+
+      return { ...state, data: changedTeams };
     },
   ),
 );

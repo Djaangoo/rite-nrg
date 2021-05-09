@@ -1,0 +1,21 @@
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input task title!">
+      <nz-form-label [nzSpan]="6" nzFor="email">Title</nz-form-label>
+      <input type="text" nz-input formControlName="title" placeholder="Title" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input task description!">
+      <nz-form-label [nzSpan]="6" nzFor="email">Description</nz-form-label>
+      <textarea
+        nz-input
+        formControlName="description"
+        placeholder="Description"
+        [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button nz-button [nzType]="'primary'">Create Task</button>
+</form>

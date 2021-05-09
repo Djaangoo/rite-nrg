@@ -4,3 +4,7 @@ export enum EStatus {
   loaded,
   error,
 }
+
+export enum EGlobActions {
+  loadData = '[Users Teams] Load Data',
+}

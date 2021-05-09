@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
-import { EStatus } from 'src/app/model/enums';
-import { IRootStore, ITask, ITeam } from 'src/app/model/interfaces';
+import { EGlobActions, EStatus } from 'src/app/model/enums';
+import { IRootStore, ITask, ITeam, IUser } from 'src/app/model/interfaces';
+import { getCurrentUserData } from 'src/app/store/current-user/current-user.selectors';
 import { ETeamsActions, loadTeams } from 'src/app/store/teams/teams.actions';
 import { getStateStatus, getStateTeams } from 'src/app/store/teams/teams.selectors';
 import { EUsersActions } from 'src/app/store/users/users.actions';
@@ -20,9 +21,11 @@ interface ColumnItem {
   templateUrl: './teams-list.component.html',
   styleUrls: ['./teams-list.component.scss'],
 })
-export class TeamsListComponent implements OnInit {
-  $teams: Observable<ITeam[]> = this.store.select(getStateTeams);
-  $status: Observable<EStatus> = this.store.select(getStateStatus);
+export class TeamsListComponent {
+  currentUser$: Observable<IUser> = this.store.select(getCurrentUserData);
+  teams$: Observable<ITeam[]> = this.store.select(getStateTeams);
+  status$: Observable<EStatus> = this.store.select(getStateStatus);
+
   listOfColumns: ColumnItem[] = [
     {
       name: 'Name',
@@ -50,10 +53,6 @@ export class TeamsListComponent implements OnInit {
     },
   ];
   constructor(private store: Store) {}
-
-  ngOnInit(): void {
-    this.store.dispatch({ type: ETeamsActions.load });
-  }
 
   getAllTasksStatus(team: ITeam): string {
     let completedBy = 0;

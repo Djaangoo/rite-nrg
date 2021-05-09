@@ -1,8 +1,8 @@
 <nz-table
   #teamsTable
   nzTableLayout="fixed"
-  [nzLoading]="($status | async) === 2"
-  [nzData]="($teams | async) || []"
+  [nzLoading]="(status$ | async) === 2"
+  [nzData]="(teams$ | async) || []"
   [nzTitle]="testHeader"
 >
   <thead>
@@ -15,7 +15,7 @@
   <tbody>
     <tr *ngFor="let team of teamsTable.data">
       <td nzEllipsis>
-        <a [routerLink]="['/team', team.id]">
+        <a [routerLink]="['/team', team.id]" [state]="{ team: team, user: currentUser$ | async }">
           {{ team.name }}
         </a>
       </td>

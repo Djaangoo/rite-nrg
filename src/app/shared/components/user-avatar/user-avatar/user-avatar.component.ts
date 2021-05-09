@@ -12,13 +12,13 @@ import { getStateSingleUser } from 'src/app/store/users/users.selectors';
 export class UserAvatarComponent implements OnInit {
   @Input() id? = 0;
   @Input() text? = '';
-  $user!: Observable<IUser>;
+  user$!: Observable<IUser>;
 
   constructor(private store: Store) {}
 
   ngOnInit() {
     if (this.id) {
-      this.$user = this.store.select(getStateSingleUser, { id: this.id });
+      this.user$ = this.store.select(getStateSingleUser, { id: this.id });
     }
   }
 }

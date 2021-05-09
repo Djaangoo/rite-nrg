@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { registerLocaleData } from '@angular/common';
-import en from '@angular/common/locales/en';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { ViewsModule } from './views/views.module';
@@ -16,8 +14,7 @@ import { teamsFeatureKey, teamsReducer } from './store/teams/teams.reducer';
 import { TeamsEffects } from './store/teams/teams.effects';
 import { UsersEffects } from './store/users/users.effects';
 import { usersFeatureKey, usersReducer } from './store/users/users.reducer';
-
-registerLocaleData(en);
+import { currentUserFeatureKey, currentUserReducer } from './store/current-user/current-user.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +22,11 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ [teamsFeatureKey]: teamsReducer, [usersFeatureKey]: usersReducer }),
+    StoreModule.forRoot({
+      [teamsFeatureKey]: teamsReducer,
+      [usersFeatureKey]: usersReducer,
+      [currentUserFeatureKey]: currentUserReducer,
+    }),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([TeamsEffects, UsersEffects]),
     CoreModule,

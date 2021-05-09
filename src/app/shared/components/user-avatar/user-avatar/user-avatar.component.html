@@ -1,4 +1,9 @@
-<nz-avatar *ngIf="$user | async as user; else textIcon" nzIcon="user" [nzSrc]="user.avatar"></nz-avatar>
+<nz-avatar
+  *ngIf="user$ | async as user; else textIcon"
+  nzIcon="user"
+  [title]="user.firstName"
+  [nzSrc]="user.avatar"
+></nz-avatar>
 
 <ng-template #textIcon>
   <nz-avatar [nzText]="text"></nz-avatar>
