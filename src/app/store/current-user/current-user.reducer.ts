@@ -1,6 +1,6 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { IUser } from 'src/app/model/interfaces';
-import { ECurrentUserActions, loadCurrentUsers } from './current-user.actions';
+import { changeCurrentUser, loadCurrentUsers } from './current-user.actions';
 
 export const currentUserFeatureKey = 'currentUser';
 
@@ -24,6 +24,12 @@ export const currentUserReducer = createReducer(
     loadCurrentUsers,
     (state): ICurrentUserState => {
       return { ...state };
+    },
+  ),
+  on(
+    changeCurrentUser,
+    (state, action): ICurrentUserState => {
+      return { ...state, data: { ...action.user } };
     },
   ),
 );

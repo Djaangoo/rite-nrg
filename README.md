@@ -55,7 +55,7 @@ Imagine an API that exposes methods that supports following User Stories:
 > I want to be able to add/delete teams\
 > So that I can manage teams
 
-    Teams list -> Add Team -> Modal, Required: [Name, Members] (creator is a Team Member) -> create Team -> Team Created
+    Teams list -> Add Team -> Modal, Required: [Name, Members] -> create Team -> Team Created
 
                                 as Team Member -> Remove Team -> confirm -> Team Removed
     Teams list -> Team Page -> 

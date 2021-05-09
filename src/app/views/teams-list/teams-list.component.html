@@ -1,3 +1,14 @@
+<nz-page-header class="header__container" nz-col nzSpan="24" [nzGhost]="false" nzTitle="Teams">
+  <nz-page-header-extra>
+    <app-user-avatar
+      *ngIf="currentUser$ | async as currentUser"
+      class="avatars__item"
+      [id]="currentUser.id"
+    ></app-user-avatar>
+    <button nz-button nzType="primary" (click)="showChangeUserModal()">Change User</button>
+  </nz-page-header-extra>
+</nz-page-header>
+
 <nz-table
   #teamsTable
   nzTableLayout="fixed"
@@ -40,7 +51,7 @@
   <div nz-row nzJustify="space-between" nzAlign="middle">
     <div nz-col>List of Teams</div>
     <div nz-col>
-      <button nz-button nzType="primary">Add Team</button>
+      <button (click)="showModal()" nz-button nzType="primary">Add Team</button>
     </div>
   </div>
 </ng-template>

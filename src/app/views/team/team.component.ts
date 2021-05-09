@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable, Subscriber, Subscription } from 'rxjs';
@@ -9,6 +9,7 @@ import {
   ETeamsActions,
   markTaskCompleted,
   removeSelectedTask,
+  removeSelectedTeam,
   unmarkTaskCompleted,
 } from 'src/app/store/teams/teams.actions';
 import { getStateSingleTeam } from 'src/app/store/teams/teams.selectors';
@@ -28,7 +29,12 @@ export class TeamComponent implements OnInit, OnDestroy {
   private teamId$!: Subscription;
   private routeData$!: Subscription;
 
-  constructor(private route: ActivatedRoute, private store: Store, private modalService: NzModalService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store,
+    private modalService: NzModalService,
+    private router: Router,
+  ) {}
 
   markTask(_task: ITask, _team: ITeam): void {
     this.store.dispatch(markTaskCompleted({ user: this.currentUserData, task: _task, team: _team }));
@@ -49,9 +55,24 @@ export class TeamComponent implements OnInit, OnDestroy {
     });
   }
 
+  deleteTeam(_team: ITeam): void {
+    this.modalService.confirm({
+      nzTitle: 'Do you Want to delete team?',
+      nzContent: `When clicked the OK button, the "${_team.name}" will be delete.`,
+      nzOkDanger: true,
+      nzOnOk: () => {
+        this.router.navigate(['../teams']);
+        this.store.dispatch(removeSelectedTeam({ team: _team }));
+      },
+    });
+  }
+
+  back(): void {
+    this.router.navigate(['..']);
+  }
   showModal(): void {
     this.modalService.create({
-      nzTitle: 'Modal Title',
+      nzTitle: 'Add Task',
       nzContent: AddTaskComponent,
       nzFooter: null,
       nzComponentParams: {

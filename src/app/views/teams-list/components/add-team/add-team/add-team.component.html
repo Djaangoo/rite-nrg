@@ -1,0 +1,23 @@
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input team title!">
+      <nz-form-label [nzSpan]="6" nzFor="email">Title</nz-form-label>
+      <input type="text" nz-input formControlName="title" placeholder="Title" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input team members!">
+      <nz-form-label [nzSpan]="6" nzFor="email">Members</nz-form-label>
+      <nz-select formControlName="members" nzMode="multiple" nzPlaceHolder="Please select members">
+        <nz-option
+          *ngFor="let user of users$ | async | keyvalue"
+          [nzLabel]="user.value.firstName"
+          [nzValue]="user.value.id"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button nz-button [nzType]="'primary'">Create Team</button>
+</form>

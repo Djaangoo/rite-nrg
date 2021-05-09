@@ -1,34 +1,49 @@
-<div nz-row nzGutter="16" *ngIf="team$ | async as team">
-  <div nz-col nzSpan="24">
-    <div nz-row nzJustify="space-between">
-      <button nz-button nzType="dashed" [routerLink]="['../teams']">
-        <i nz-icon nzType="arrow-left" nzTheme="outline"></i>
-      </button>
-
+<div *ngIf="team$ | async as team">
+  <nz-page-header
+    class="header__container"
+    nz-col
+    nzSpan="24"
+    (nzBack)="back()"
+    nzBackIcon
+    [nzGhost]="false"
+    [nzTitle]="team.name"
+  >
+    <nz-page-header-extra>
       <button nz-button nzType="primary" [disabled]="!isMember" (click)="showModal()">Add Task</button>
+      <button nz-button nzType="primary" nzDanger [disabled]="!isMember" (click)="deleteTeam(team)">Remove Team</button>
+    </nz-page-header-extra>
+  </nz-page-header>
+  <div nz-row nzGutter="16">
+    <div nz-col nzXs="24" nzMd="12" nzLg="8" *ngFor="let task of team.tasks">
+      <nz-card
+        class="card"
+        [nzTitle]="task.title"
+        [nzActions]="
+          isMember ? [task.completedBy.includes(currentUserData.id) ? actionUncheck : actionCheck, actionDelete] : []
+        "
+      >
+        <header nz-row nzGutter="8" class="card__title" *ngIf="task.completedBy.length; else nobodyComplete">
+          <h4 nz-col nzSpan="24">Completed by:</h4>
+          <app-user-avatar nz-col *ngFor="let userId of task.completedBy" [id]="userId"></app-user-avatar>
+        </header>
+        <nz-card-meta class="card__description" [nzDescription]="task.description"></nz-card-meta>
+      </nz-card>
+
+      <ng-template #actionCheck>
+        <i nz-icon nzType="check-circle" nzTheme="outline" (click)="markTask(task, team)"></i>
+      </ng-template>
+      <ng-template #actionUncheck>
+        <i nz-icon nzType="close-circle" (click)="unmarkTask(task, team)" nzTheme="outline"></i>
+      </ng-template>
+      <ng-template #actionDelete>
+        <i nz-icon nzType="delete" (click)="deleteTask(task, team)"></i>
+      </ng-template>
     </div>
-  </div>
-  <div nz-col [nzSpan]="8" *ngFor="let task of team.tasks">
-    <nz-card
-      [nzTitle]="task.title"
-      [nzActions]="
-        isMember ? [task.completedBy.includes(currentUserData.id) ? actionUncheck : actionCheck, actionDelete] : []
-      "
-    >
-      <header nz-row nzGutter="8" class="card__title">
-        <h4 nz-col nzSpan="24">Completed by:</h4>
-        <app-user-avatar nz-col *ngFor="let userId of task.completedBy" [id]="userId"></app-user-avatar>
-      </header>
-      <nz-card-meta class="card__description" [nzDescription]="task.description"></nz-card-meta>
-    </nz-card>
-    <ng-template #actionCheck>
-      <i nz-icon nzType="check-circle" nzTheme="outline" (click)="markTask(task, team)"></i>
-    </ng-template>
-    <ng-template #actionUncheck>
-      <i nz-icon nzType="close-circle" (click)="unmarkTask(task, team)" nzTheme="outline"></i>
-    </ng-template>
-    <ng-template #actionDelete>
-      <i nz-icon nzType="delete" (click)="deleteTask(task, team)"></i>
-    </ng-template>
+
+    <nz-empty nz-col nzSpan="24" *ngIf="!team.tasks.length"></nz-empty>
   </div>
 </div>
+
+<ng-template #nobodyComplete>
+  <h4>Nobody Complete this task...</h4>
+</ng-template>

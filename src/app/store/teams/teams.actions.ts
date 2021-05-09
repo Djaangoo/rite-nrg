@@ -9,6 +9,8 @@ export enum ETeamsActions {
   unmarkTask = '[Teams] Unmark Task as Completed',
   addNewTask = '[Teams] Add New Task',
   removeTask = '[Teams] Remove Task',
+  removeTeam = '[Teams] Remove Team',
+  addNewTeam = '[Teams] Add New Team',
 }
 
 export const loadTeams = createAction(ETeamsActions.load);
@@ -32,4 +34,8 @@ export const addTask = createAction(
   props<{ teamID: number; title: string; description: string }>(),
 );
 
-export const removeSelectedTask = createAction(ETeamsActions.addNewTask, props<{ task: ITask; team: ITeam }>());
+export const removeSelectedTask = createAction(ETeamsActions.removeTask, props<{ task: ITask; team: ITeam }>());
+
+export const removeSelectedTeam = createAction(ETeamsActions.removeTeam, props<{ team: ITeam }>());
+
+export const addTeam = createAction(ETeamsActions.addNewTeam, props<{ title: string; members: number[] }>());

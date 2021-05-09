@@ -7,6 +7,8 @@ import { UserAvatarComponent } from './components/user-avatar/user-avatar/user-a
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 @NgModule({
   declarations: [UserAvatarComponent],
@@ -26,8 +28,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     RouterModule,
     UserAvatarComponent,
     NzGridModule,
+    NzPageHeaderModule,
     NzButtonModule,
     FormsModule,
+    NzEmptyModule,
     ReactiveFormsModule,
   ],
 })

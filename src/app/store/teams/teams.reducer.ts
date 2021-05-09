@@ -3,11 +3,13 @@ import { EStatus } from 'src/app/model/enums';
 import { ITask, ITeam } from 'src/app/model/interfaces';
 import {
   addTask,
+  addTeam,
   loadTeams,
   loadTeamsFailure,
   loadTeamsSuccess,
   markTaskCompleted,
   removeSelectedTask,
+  removeSelectedTeam,
   unmarkTaskCompleted,
 } from './teams.actions';
 
@@ -128,6 +130,29 @@ export const teamsReducer = createReducer(
       });
 
       return { ...state, data: changedTeams };
+    },
+  ),
+  on(
+    removeSelectedTeam,
+    (state, action): ITeamsState => {
+      const changedTeams = [...state.data].filter((_team) => {
+        return _team.id !== action.team.id;
+      });
+
+      return { ...state, data: changedTeams };
+    },
+  ),
+  on(
+    addTeam,
+    (state, action): ITeamsState => {
+      const newTeam: ITeam = {
+        tasks: [],
+        name: action.title,
+        id: new Date().valueOf(),
+        members: action.members,
+      };
+
+      return { ...state, data: [...state.data, newTeam] };
     },
   ),
 );

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
-import { EGlobActions, EStatus } from 'src/app/model/enums';
-import { IRootStore, ITask, ITeam, IUser } from 'src/app/model/interfaces';
+import { EStatus } from 'src/app/model/enums';
+import { ITask, ITeam, IUser } from 'src/app/model/interfaces';
 import { getCurrentUserData } from 'src/app/store/current-user/current-user.selectors';
-import { ETeamsActions, loadTeams } from 'src/app/store/teams/teams.actions';
 import { getStateStatus, getStateTeams } from 'src/app/store/teams/teams.selectors';
-import { EUsersActions } from 'src/app/store/users/users.actions';
+import { AddTeamComponent } from './components/add-team/add-team/add-team.component';
+import { ChangeUserComponent } from './components/change-user/change-user/change-user.component';
 
 interface ColumnItem {
   name: string;
@@ -52,7 +53,7 @@ export class TeamsListComponent {
       sortOrder: null,
     },
   ];
-  constructor(private store: Store) {}
+  constructor(private store: Store, private modalService: NzModalService) {}
 
   getAllTasksStatus(team: ITeam): string {
     let completedBy = 0;
@@ -61,5 +62,21 @@ export class TeamsListComponent {
     });
 
     return `${completedBy}/${team.members.length * team.tasks.length}`;
+  }
+
+  showModal(): void {
+    this.modalService.create({
+      nzTitle: 'Add Team',
+      nzContent: AddTeamComponent,
+      nzFooter: null,
+    });
+  }
+
+  showChangeUserModal(): void {
+    this.modalService.create({
+      nzTitle: 'Add Team',
+      nzContent: ChangeUserComponent,
+      nzFooter: null,
+    });
   }
 }
