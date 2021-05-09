@@ -7,9 +7,20 @@ import { AddTaskComponent } from './components/add-task/add-task/add-task.compon
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 @NgModule({
   declarations: [TeamComponent, AddTaskComponent],
-  imports: [SharedModule, NzCardModule, NzIconModule, NzModalModule, NzInputModule, NzFormModule],
+  imports: [
+    SharedModule,
+    NzCardModule,
+    NzIconModule,
+    NzModalModule,
+    NzInputModule,
+    NzFormModule,
+    NzStatisticModule,
+    NzProgressModule,
+  ],
 })
 export class TeamModule {}

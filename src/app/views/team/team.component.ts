@@ -70,6 +70,15 @@ export class TeamComponent implements OnInit, OnDestroy {
   back(): void {
     this.router.navigate(['..']);
   }
+
+  getProgressValue(_team: ITeam): string {
+    let completedBy = 0;
+    _team.tasks.map((task: ITask) => {
+      completedBy += task.completedBy.length;
+    });
+    return ((completedBy / (_team.members.length * _team.tasks.length)) * 100).toFixed(1);
+  }
+
   showModal(): void {
     this.modalService.create({
       nzTitle: 'Add Task',

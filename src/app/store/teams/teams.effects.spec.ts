@@ -12,8 +12,10 @@ describe('TeamsEffects', () => {
     TestBed.configureTestingModule({
       providers: [
         TeamsEffects,
-        provideMockActions(() => actions$)
-      ]
+        provideMockActions(() => {
+          return actions$;
+        }),
+      ],
     });
 
     effects = TestBed.inject(TeamsEffects);

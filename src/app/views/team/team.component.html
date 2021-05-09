@@ -13,6 +13,21 @@
       <button nz-button nzType="primary" nzDanger [disabled]="!isMember" (click)="deleteTeam(team)">Remove Team</button>
     </nz-page-header-extra>
   </nz-page-header>
+
+  <nz-row>
+    <nz-col [nzSpan]="24" class="progress">
+      <div nz-row nzGutter="8">
+        <nz-statistic nz-col nzSpan="8" [nzValueTemplate]="progressChart" nzTitle="Progress"></nz-statistic>
+        <nz-statistic nz-col nzSpan="8" [nzValue]="team.members.length" nzTitle="Members"></nz-statistic>
+        <nz-statistic nz-col nzSpan="8" [nzValue]="team.tasks.length" nzTitle="Tasks"></nz-statistic>
+      </div>
+    </nz-col>
+  </nz-row>
+
+  <ng-template #progressChart>
+    <nz-progress [nzPercent]="getProgressValue(team)" nzType="circle" [nzWidth]="80"></nz-progress>
+  </ng-template>
+
   <div nz-row nzGutter="16">
     <div nz-col nzXs="24" nzMd="12" nzLg="8" *ngFor="let task of team.tasks">
       <nz-card

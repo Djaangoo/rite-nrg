@@ -1,7 +1,7 @@
 import * as fromUsers from './users.actions';
 
-describe('loadUserss', () => {
+describe('loadUsers', () => {
   it('should return an action', () => {
-    expect(fromUsers.loadUserss().type).toBe('[Users] Load Userss');
+    expect(fromUsers.loadUsers().type).toBe('[Users] Load Userss');
   });
 });
